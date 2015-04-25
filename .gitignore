@@ -1,0 +1,4 @@
+*.pyc
+cms/gowius/media
+cms/gowius/local_settings.py
+

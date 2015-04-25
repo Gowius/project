@@ -3,7 +3,6 @@ from django import forms
 from django.db.models.fields.files import ImageField, ImageFieldFile
 from django.utils.safestring import mark_safe
 from PIL import Image
-# from south.modelsinspector import 
 
 def _add_thumb(s):
     """

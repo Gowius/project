@@ -1,0 +1,44 @@
+{% load gowius_tags %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <link rel="canonical" href="http://127.0.0.1:8000{% block canonical %}{% endblock %}" />
+
+    <link rel="shortcut icon" href="/static/design/img/favicon.png">
+    {% block rel %}
+    {% endblock rel %}
+
+    <link href="/static/design/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/design/css/jquery-ui.css" rel="stylesheet">
+    <link href="/static/design/css/project.css" rel="stylesheet">
+
+    {% block meta %}
+    {% endblock meta %}
+
+    <script src="/static/design/js/jquery-1.11.2.min.js"></script>
+
+    {% block top_script %}
+    {% endblock top_script %}
+    
+  </head>
+  <body>
+
+    {% block main %}
+    {% endblock main %}
+
+
+    {% block modal %}
+    {% endblock modal %}
+
+
+    {% block script %}
+    {% endblock script %}
+
+  </body>
+</html>

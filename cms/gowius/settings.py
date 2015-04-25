@@ -42,11 +42,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gowius',
     'content',
     'tinymce',
     'filebrowser',
+    'easy_thumbnails',
 
-    # 'cms'
 )
 
 MIDDLEWARE_CLASSES = (

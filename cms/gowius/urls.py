@@ -8,19 +8,13 @@ from django.conf.urls import patterns, include, url
 from filebrowser.sites import site
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'gowius.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^$', 'content.views.home', name='home'),
 
     url(r'^gowius_admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^gowius_admin/filebrowser/', include(site.urls)),
-
     url(r'^tinymce/',include('tinymce.urls')),
     url(r'^media/tiny_mce/',include('tinymce.urls')),
-
-
-
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
