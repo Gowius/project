@@ -8,13 +8,11 @@ from mptt.models import MPTTModel, TreeForeignKey
 import datetime
 
 
-
-
-def make_upload_path(instance, filename, prefix = False):
+def make_upload_path(instance, filename, prefix=False):
     # Переопределение имени загружаемого файла.
-    n1 = random.randint(0,10000)
-    n2 = random.randint(0,10000)
-    n3 = random.randint(0,10000)
+    n1 = random.randint(0, 10000)
+    n2 = random.randint(0, 10000)
+    n3 = random.randint(0, 10000)
     filename = str(n1)+"_"+str(n2)+"_"+str(n3) + '.jpg'
     return u"%s/%s" % (settings.IMAGE_UPLOAD_DIR, filename)
 
@@ -24,21 +22,25 @@ class Menu(models.Model):
 
     def __unicode__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = u"Меню"
 
 
 class MenuItem(MPTTModel):
-    menu = models.ForeignKey(Menu,null=True, blank=True, verbose_name="Меню")
+    menu = models.ForeignKey(Menu, null=True, blank=True, verbose_name="Меню")
     name = models.CharField(max_length=200, verbose_name="Название")
     slug = models.CharField(max_length=250, blank=True, verbose_name="Урл")
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', verbose_name=u"Родительский пункт меню")
     published = models.BooleanField(verbose_name="Опубликован")
     ordering = models.IntegerField(verbose_name="Порядок сортировки", default=0, blank=True, null=True)
+
     def __unicode__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = u"Пункты меню"
+
     class MPTTMeta:
         order_insertion_by = ['name']
 
@@ -52,13 +54,16 @@ class Category(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', verbose_name=u"Родительская категория")
     published = models.BooleanField(verbose_name="Опубликован")
     ordering = models.IntegerField(verbose_name="Порядок сортировки", default=0, blank=True, null=True)
+
     def __unicode__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = "Категории"
 
     class MPTTMeta:
         order_insertion_by = ['name']
+
 
 class Article(models.Model):
     name = models.CharField(max_length=250, verbose_name="Название")
@@ -73,18 +78,23 @@ class Article(models.Model):
     pub_date = models.DateField( default=datetime.date.today(), blank=True, verbose_name="Дата публикации")
     published = models.BooleanField(verbose_name="Опубликован")
     ordering = models.IntegerField(verbose_name="Порядок сортировки", default=0, blank=True, null=True)
+
     def __unicode__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = "Страницы"
+
 
 class Snipet(models.Model):
     name = models.CharField(max_length=250, verbose_name="Название")
     text = tinymce_model.HTMLField(blank=True, verbose_name="Код снипета")
     published = models.BooleanField(verbose_name="Опубликован")
     ordering = models.IntegerField(verbose_name="Порядок сортировки", default=0, blank=True, null=True)
+
     def __unicode__(self):
         return self.name
+
     class Meta:
         verbose_name_plural = "Куски кода"
         verbose_name = "Снипет"

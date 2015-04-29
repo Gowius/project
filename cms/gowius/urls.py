@@ -13,8 +13,8 @@ urlpatterns = [
     url(r'^gowius_admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^gowius_admin/filebrowser/', include(site.urls)),
-    url(r'^tinymce/',include('tinymce.urls')),
-    url(r'^media/tiny_mce/',include('tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^media/tiny_mce/', include('tinymce.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
@@ -22,13 +22,14 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.STATIC_ROOT}))
+        (
+            r'^static/(?P<path>.*)$', 'django.views.static.serve', \
+            {'document_root': settings.STATIC_ROOT}))
 urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.MEDIA_ROOT}))
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', \
+            {'document_root': settings.MEDIA_ROOT}))
 
-if settings.DEBUG is False:   #if DEBUG is True it will be served automatically
+if settings.DEBUG is False:   # if DEBUG is True it will be served automatically
     urlpatterns += patterns('',
             url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     )

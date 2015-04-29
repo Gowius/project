@@ -1,9 +1,8 @@
 from django.contrib import admin
-from content.models import *
-from content.fields import AdminImageWidget
 from django.db import models
 
-
+from content.models import *
+from content.fields import AdminImageWidget
 
 
 class MenuItemAdmin(admin.ModelAdmin):
@@ -12,15 +11,18 @@ class MenuItemAdmin(admin.ModelAdmin):
     list_editable = ('slug', 'published', 'ordering')
 admin.site.register(MenuItem, MenuItemAdmin)
 
+
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     list_display = ('name', 'slug', 'category', 'slug', 'published', 'ordering')
     list_editable = ('slug', 'published', 'ordering')
 admin.site.register(Article, ArticleAdmin)
 
+
 class InlineMenuItem(admin.StackedInline):
     model = MenuItem
     extra = 1
+
 
 class MenuAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')

@@ -4,6 +4,7 @@ from django.db.models.fields.files import ImageField, ImageFieldFile
 from django.utils.safestring import mark_safe
 from PIL import Image
 
+
 def _add_thumb(s):
     """
     Modifies a string (filename, URL) containing an image filename, to insert
@@ -14,6 +15,7 @@ def _add_thumb(s):
     if parts[-1].lower() not in ['jpeg', 'jpg']:
         parts[-1] = 'jpg'
     return ".".join(parts)
+
 
 class ThumbnailImageFieldFile(ImageFieldFile):
     def _get_thumb_path(self):
@@ -57,6 +59,7 @@ class ThumbnailImageField(ImageField):
         super(ThumbnailImageField, self).__init__(*args, **kwargs)
 
 # add_introspection_rules([], ["^content\.fields\.ThumbnailImageField"])
+
 
 class AdminImageWidget(forms.FileInput):
     """
